@@ -1,0 +1,14 @@
+clear all;
+clc;
+filename=fullfile('testfile1.txt');
+data=readtable(filename);
+p = 0.8;
+N = size(data,1);  % total number of rows 
+tf = false(N,1);    % create logical index vector
+tf(1:round(p*N)) = true;     
+tf = tf(randperm(N));   % randomise order
+dataTraining = data(tf,:) ;
+dataTesting = data(~tf,:);
+C=200;
+x=dataTraining(:,:end-1);
+
